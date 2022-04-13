@@ -4,22 +4,24 @@ import "./Message.less";
 
 import AppContext from "contexts/AppContext";
 
-const Message = ({ message }) => {
+const Message = ({ message, persistent = false }) => {
 	const { setMessage } = useContext(AppContext);
 
 	const [show, setShow] = useState(true);
 
 	// On componentDidMount set the timer
 	useEffect(() => {
-		const timeId = setTimeout(() => {
-			// After 3 seconds set the show value to false
-			setShow(false);
-			setMessage("");
-		}, 2500);
+		if (!persistent) {
+			const timeId = setTimeout(() => {
+				// After 3 seconds set the show value to false
+				setShow(false);
+				setMessage("");
+			}, 2500);
 
-		return () => {
-			clearTimeout(timeId);
-		};
+			return () => {
+				clearTimeout(timeId);
+			};
+		}
 	}, []);
 
 	// If show is false the component will return null and stop here

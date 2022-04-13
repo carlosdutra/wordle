@@ -19,6 +19,7 @@ const Keyboard = () => {
 		setGameOver,
 		setMessage,
 		findDiscoveredLetters,
+		setRevealAnswer,
 	} = useContext(AppContext);
 
 	// Keys
@@ -51,6 +52,9 @@ const Keyboard = () => {
 								setGameOver(true);
 							} else {
 								findDiscoveredLetters();
+								if (curIndex.r === grid.length - 1) {
+									setRevealAnswer(true);
+								}
 								setCurIndex({ r: curIndex.r + 1, l: -1 });
 							}
 						} else {
@@ -59,6 +63,8 @@ const Keyboard = () => {
 					} else {
 						setMessage("Not enough letters");
 					}
+				} else {
+					console.log("last row was reached");
 				}
 				break;
 			case "DEL":
@@ -96,7 +102,7 @@ const Keyboard = () => {
 				))}
 			</div>
 			<div className="wordle--keyboard-row">
-				<Key handleKeyClick={handleKeyClick} value="ENTER">
+				<Key handleKeyClick={handleKeyClick} value="ENTER" bigKey={true}>
 					ENTER
 				</Key>
 				{keys3.map((key) => (
@@ -104,7 +110,7 @@ const Keyboard = () => {
 						{key}
 					</Key>
 				))}
-				<Key handleKeyClick={handleKeyClick} value="DEL">
+				<Key handleKeyClick={handleKeyClick} value="DEL" bigKey={true}>
 					DEL
 				</Key>
 			</div>

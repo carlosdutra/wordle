@@ -17,6 +17,7 @@ function App() {
 	const [grid, setGrid] = useState([]);
 	const [gameOver, setGameOver] = useState(false);
 	const [message, setMessage] = useState("");
+	const [revealAnswer, setRevealAnswer] = useState(false);
 	const [discovedLetters, setDiscoveredLetters] = useState([]);
 
 	const [curIndex, setCurIndex] = useState({ r: 0, l: -1 });
@@ -80,8 +81,11 @@ function App() {
 						setMessage,
 						discovedLetters,
 						findDiscoveredLetters,
+						revealAnswer,
+						setRevealAnswer,
 					}}
 				>
+					{revealAnswer && <Message message={wordle} persistent={true} />}
 					{message && <Message message={message} />}
 					<Grid />
 					<Keyboard />

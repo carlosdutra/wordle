@@ -4,7 +4,7 @@ import AppContext from "contexts/AppContext";
 
 import "./Key.less";
 
-const Key = ({ value, handleKeyClick, children }) => {
+const Key = ({ value, handleKeyClick, children, bigKey }) => {
 	const { discovedLetters } = useContext(AppContext);
 
 	const [status, setStatus] = useState("");
@@ -20,7 +20,8 @@ const Key = ({ value, handleKeyClick, children }) => {
 	return (
 		<button
 			onClick={handleKeyClick}
-			className={`wordle--keyboard-row-key ${status}`}
+			data-status={status}
+			className={`wordle--keyboard-row-key${bigKey ? " bigkey" : ""}`}
 			value={value}
 		>
 			{children}

@@ -1,7 +1,7 @@
 .wordle--keyboard-row {
 	display: flex;
 	width: 100%;
-	gap: 6px;
+	gap: 4px;
 	margin: 0 auto 8px;
 	touch-action: manipulation;
 
@@ -23,13 +23,17 @@
 		text-transform: uppercase;
 		-webkit-tap-highlight-color: rgba(0, 0, 0, 0.3);
 
-		&.green {
+		&.bigkey {
+			flex: 1.5;
+		}
+
+		&[data-status="green"] {
 			background-color: rgb(109, 221, 109);
 		}
-		&.yellow {
+		&[data-status="yellow"] {
 			background-color: rgb(214, 214, 79);
 		}
-		&.gray {
+		&[data-status="gray"] {
 			background-color: #444;
 		}
 	}
