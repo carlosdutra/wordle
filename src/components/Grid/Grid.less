@@ -1,0 +1,38 @@
+.wordle--grid {
+	margin-bottom: 20px;
+
+	&-row {
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		grid-gap: 5px;
+		margin-top: 5px;
+	}
+
+	&-cell {
+		border: 2px solid #3a3a3c;
+		border-radius: 3px;
+		width: 100%;
+		height: 10vh;
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 2rem;
+		line-height: 2rem;
+		font-weight: bold;
+		vertical-align: middle;
+		box-sizing: border-box;
+		color: #ffffff;
+		text-transform: uppercase;
+		user-select: none;
+
+		&.green {
+			background-color: rgb(109, 221, 109);
+		}
+		&.yellow {
+			background-color: rgb(214, 214, 79);
+		}
+		&.gray {
+			background-color: #444;
+		}
+	}
+}
