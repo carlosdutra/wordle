@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Axios from "axios";
 import "./App.css";
 
 import Message from "components/Message";
@@ -6,8 +7,6 @@ import Grid from "components/Grid";
 import Keyboard from "components/Keyboard";
 
 import AppContext from "contexts/AppContext";
-
-import data from "data/data";
 
 function App() {
 	const numOfRows = 6;
@@ -23,9 +22,10 @@ function App() {
 	const [curIndex, setCurIndex] = useState({ r: 0, l: -1 });
 
 	useEffect(() => {
-		setWordle(
-			data[Math.floor(Math.random() * data.length)].toUpperCase().split("")
-		);
+		Axios.get(process.env.REACT_APP_URL).then((res) => {
+			const wordle = res.data.split("");
+			setWordle(wordle);
+		});
 
 		const gridStarter = new Array(numOfRows).fill("");
 		for (var row = 0; row < numOfRows; row++) {
